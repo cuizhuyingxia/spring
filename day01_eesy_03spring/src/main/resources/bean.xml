@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 配置id和全类名 -->
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl"></bean>
+    <bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl"></bean>
+    <!-- 致于读取全类名、创建对象、以及将对象封装到map中，这些事情spring都帮我们自动完成了
+        我们只需要获取spring的Ioc核心容器，调用getBean方法，传入对应的id，然后spring就会去map中获取对象，返回给我们-->
+</beans>
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- spring中的依赖注入
+            首先我们应该明白，IOC的作用是降低程序间的耦合（依赖关系），将依赖关系的管理交给spring维护，
+                只需要在配置文件中提供要创建的对象的id和全限定类名即可，
+                我们将这种依赖关系的维护，就称之为依赖注入（spring可以根据注入的内容，创建对象，存入到IOC容器中）
+
+            依赖注入：
+                可以注入的数据有三类：
+                    1. 基本类型和String
+                    2. 其它bean类型（在配置文件中配置或使用注解配置的bean）
+                    3. 复杂类型和集合类型
+                注入的方式有三种：
+                    1. 使用有参构造函数提供
+                    2. 使用set方法提供
+                    3. 使用注解提供
+     -->
+
+    <!-- 有参构造函数注入
+            使用的标签为constructor-arg
+            标签的属性：
+                type        通过构造函数中的某个参数类型或某些参数类型，来指定参数；
+                                不常用，例如构造函数中有参数username、hobby，它们的类型都是String，那么在赋值时，就会给这两个参数赋予相同的值
+                index       通过构造函数中参数的索引，来指定参数
+                                也不是很常用，因为每次都还要看一下参数对应的索引是什么，也比较耗时
+                name        通过构造函数中参数的名称，来指定参数
+                                常用，可以直接根据参数名称指定参数，方便、高效
+                value       给基本类型和String类型的参数赋值
+                ref         引入IOC容器中的bean对象给参数赋值
+    -->
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl">
+        <constructor-arg name="name" value="coco"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="birthday" ref="nowDate"></constructor-arg>
+    </bean>
+    <!-- 配置一个日期对象 -->
+    <bean id="nowDate" class="java.util.Date"></bean>
+
+    <!-- set方法注入
+        使用的标签为property
+        标签的属性:
+            name        通过属性名称，来指定参数
+            value       给基本类型和String类型的参数赋值
+            ref         引入IOC容器中的bean对象给参数赋值
+    -->
+    <bean id="accountService2" class="com.itheima.service.impl.AccountServiceImpl2">
+        <property name="name" value="coco"></property>
+        <property name="age" value="18"></property>
+        <property name="birthday" ref="nowDate"></property>
+    </bean>
+
+    <!-- set方法注入复杂类型和集合类型
+        List结构的类型有：数组 集合 有序集合
+            如果注入的数据是List结构类型的，则可以使用以下任意一个标签：array list set
+
+        Map结构的类型有：map集合 Properties属性
+            如果注入的数据是Map结构类型的，则可以使用以下任意一个标签：map props
+    -->
+    <bean id="accountService3" class="com.itheima.service.impl.AccountServiceImpl3">
+        <property name="myStrs">
+            <array>                     <!-- 也可以使用list或set标签 -->
+                <value>AA</value>
+                <value>BB</value>
+                <value>CC</value>
+            </array>
+        </property>
+
+        <property name="myList">
+            <list>                       <!-- 也可以使用array或set标签 -->
+                <value>DD</value>
+                <value>EE</value>
+                <value>FF</value>
+            </list>
+        </property>
+
+        <property name="mySet">
+            <set>                       <!-- 也可以使用array或list标签 -->
+                <value>GG</value>
+                <value>HH</value>
+                <value>II</value>
+            </set>
+        </property>
+
+        <property name="myMap">
+            <props>                       <!-- 也可以使用props标签 -->
+                <prop key="username">root</prop>
+                <prop key="password">root</prop>
+            </props>
+        </property>
+
+        <property name="myProps">
+            <map>                       <!-- 也可以使用map标签 -->
+                <entry key="gender" value="male"></entry>
+                <entry key="age" value="18"></entry>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>
+

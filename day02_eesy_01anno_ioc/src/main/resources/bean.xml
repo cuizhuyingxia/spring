@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 导入一个名为context的名称空间和约束，然后在context:component-scan标签中，
+        添加注解所在的包，告知spring在创建容器时，去扫描这个包下的注解配置
+    -->
+    <context:component-scan base-package="com.itheima"></context:component-scan>
+</beans>
+
