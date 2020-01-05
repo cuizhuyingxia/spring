@@ -20,7 +20,7 @@ public class QueryRunnerTest {
 
 	@Test
 	public void testQueryRunner() {
-		// 1. 使用注解方式，获取Ioc容器										// 参数为被@Configuration注解的类的Class对象，也就是配置类
+		// 1. 使用注解方式，获取Ioc容器										// 参数为使用了@Configuration注解的类的Class对象，也就是配置类
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 		// 2. 获取Service对象
 		QueryRunner runner1 = applicationContext.getBean("runner", QueryRunner.class);

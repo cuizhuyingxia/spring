@@ -32,6 +32,8 @@ public class Client {
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
 		// 2. 根据id获取对象
 		IAccountService accountService = (IAccountService)applicationContext.getBean("accountService");
+		IAccountService accountService1 = (IAccountService)applicationContext.getBean("accountService");
+		System.out.println(accountService == accountService1);
 
 		accountService.saveAccount();
 		applicationContext.close();

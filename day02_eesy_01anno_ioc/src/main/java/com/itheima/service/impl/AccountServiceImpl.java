@@ -1,20 +1,20 @@
 package com.itheima.service.impl;
 
-import com.itheima.dao.IAccountDao;
-import com.itheima.dao.impl.AccountDaoImpl;
-import com.itheima.service.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+		import com.itheima.dao.IAccountDao;
+		import com.itheima.dao.impl.AccountDaoImpl;
+		import com.itheima.service.IAccountService;
+		import org.springframework.beans.factory.annotation.Autowired;
+		import org.springframework.beans.factory.annotation.Qualifier;
+		import org.springframework.context.annotation.ImportResource;
+		import org.springframework.context.annotation.Scope;
+		import org.springframework.stereotype.Component;
+		import org.springframework.stereotype.Controller;
+		import org.springframework.stereotype.Repository;
+		import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+		import javax.annotation.PostConstruct;
+		import javax.annotation.PreDestroy;
+		import javax.annotation.Resource;
 
 /**
  * @Author Lian Flower
@@ -90,13 +90,13 @@ public class AccountServiceImpl implements IAccountService {
 
 
 	// 根据变量的数据类型，到Ioc容器中查找类型相同的bean对象，并且bean的id为@Qualifier指定的id
-	@Autowired
-	@Qualifier("accountDao1")
-	private IAccountDao accountDao = null;
+	//@Autowired
+	//@Qualifier("accountDao1")
+	//private IAccountDao accountDao = null;
 
-
-	// @Resource(name = "accountDao2")	// 会出现空指针异常，具体原因，暂时不太清楚
-	// private IAccountDao accountDao;
+	//直接到Ioc容器中查找是否有id为name属性指定的id的bean对象
+	@Resource(name = "accountDao2")
+	private IAccountDao accountDao;
 
 	@PostConstruct
 	public void init() {

@@ -27,12 +27,11 @@ import java.util.List;
  * 		解决：
  * 			1. 编写一个init()方法，在init方法中编写读取配置、创建容器的代码，然后加上@Before注解，让测试方法执行前，先执行init方法
  * 			2. 因为单元测试是给测试工程师用的，测试工程师可能不懂spring容器，也不会写读取配置、创建容器的代码，那该怎么办呢？
- * 				我们可以对junit进行整合，即改变原有的main方法（有@Test注解的方法，最终在执行时，也是执行的main方法），
- * 					让main方法在执行时，帮我们去读取配置文件、并创建容器
+ * 				我们可以对junit进行整合，即替换junit集成的main方法（有@Test注解的方法，最终在执行时，执行的都是junit集成的main方法），
  * 						1. 导入spring整合junit的jar包（坐标）
  * 							spring-test
- * 						2. 使用junit提供的注解，将原有的main方法替换为spring提供的SpringJUnit4ClassRunner，
- * 							它可以帮我们读取配置、创建容器。（原有的main方法不会帮我们读取配置、创建容器）
+ * 						2. 使用junit提供的注解，将junit集成的main方法替换为spring提供的SpringJUnit4ClassRunner，
+ * 							它可以帮我们读取配置、创建容器。（原有的junit集成的main方法不会帮我们读取配置、创建容器）
  * 							@RunWith(SpringJUnit4ClassRunner.class)
  * 						3. 告知spring的运行器，spring的Ioc配置是基于xml的还是注解的，并说明位置
  * 							@ContextConfiguration
@@ -70,7 +69,7 @@ public class AccountServiceTest {
 
 	@Test
 	public void testSave() {
-		// 1. 使用注解方式，获取Ioc容器										// 参数为被@Configuration注解的类的Class对象，也就是配置类
+		// 1. 使用注解方式，获取Ioc容器										// 参数为使用了@Configuration注解的类的Class对象，也就是配置类
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 		// 2. 获取Service对象
 		IAccountService accountService = applicationContext.getBean("accountService", IAccountService.class);
@@ -83,7 +82,7 @@ public class AccountServiceTest {
 
 	@Test
 	public void testUpdate() {
-		// 1. 使用注解方式，获取Ioc容器										// 参数为被@Configuration注解的类的Class对象，也就是配置类
+		// 1. 使用注解方式，获取Ioc容器										// 参数为使用了@Configuration注解的类的Class对象，也就是配置类
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 		// 2. 获取Service对象
 		IAccountService accountService = applicationContext.getBean("accountService", IAccountService.class);
@@ -97,7 +96,7 @@ public class AccountServiceTest {
 
 	@Test
 	public void testDelete() {
-		// 1. 使用注解方式，获取Ioc容器										// 参数为被@Configuration注解的类的Class对象，也就是配置类
+		// 1. 使用注解方式，获取Ioc容器										// 参数为使用了@Configuration注解的类的Class对象，也就是配置类
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 		// 2. 获取Service对象
 		IAccountService accountService = applicationContext.getBean("accountService", IAccountService.class);

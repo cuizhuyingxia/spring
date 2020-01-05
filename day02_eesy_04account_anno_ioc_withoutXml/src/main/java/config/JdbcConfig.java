@@ -36,7 +36,7 @@ import javax.sql.DataSource;
  * 								这样	spring就会把这个类看作是配置类，就会去扫描这这个类，以及扫描类中方法上的注解	（不需要告知spring容器当前类所在的包）
  *							3. 还有一种方法，就是在主配置类上加上@Import注解，@Import可以指定其它类为配置类，
  *								所以可以在主配置类上使用Import指定当前类为配置类，然后spring会自动去扫描@Import指定的配置类，
- *									以及扫描类中方法上的注解			（不需要告知spring容器当前类所在的包）
+ *									从而去扫描类中方法上的注解			（不需要告知spring容器当前类所在的包）
  *								主配置类：就是创建容器时，传给AnnotationConfigApplicationContext对象的Class对象所对应的类
  */
 @Configuration

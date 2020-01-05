@@ -46,7 +46,7 @@ import javax.swing.plaf.basic.ComboPopup;
  *					value：指定文件的路径和名称
  *							关键字：classpath，表示文件的路径在类路径下
  */
-//@Configuration
+//@Configuration	//在创建容器时，如果将配置类的Class对象作为参数传给了AnnotationConfigApplicationContext对象，则在配置类上可以不用写@Configuration注解
 @ComponentScan({"com.itheima", "config"})
 //@Import(JdbcConfig.class)
 @PropertySource("classpath:jdbcConfig.properties")
